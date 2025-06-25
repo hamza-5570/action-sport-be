@@ -1,0 +1,255 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "ActionSport API",
+    "description": "API documentation for cart and wishlist functionality.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://actionsport-two.vercel.app"
+    }
+  ],
+  "paths": {
+    "/api/cart/add": {
+      "post": {
+        "summary": "Add or update product in cart",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  },
+                  "productId": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "userId",
+                  "productId",
+                  "quantity"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Product added or updated"
+          }
+        }
+      }
+    },
+    "/api/cart": {
+      "get": {
+        "summary": "Get all cart items for a user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of cart items"
+          }
+        }
+      }
+    },
+    "/api/cart/modify": {
+      "patch": {
+        "summary": "Modify product quantity in cart",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  },
+                  "productId": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "userId",
+                  "productId",
+                  "quantity"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cart quantity updated"
+          }
+        }
+      }
+    },
+    "/api/cart/clear": {
+      "delete": {
+        "summary": "Clear entire cart",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cart cleared"
+          }
+        }
+      }
+    },
+    "/api/cart/delete": {
+      "delete": {
+        "summary": "Remove product from cart",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product removed from cart"
+          }
+        }
+      }
+    },
+    "/api/wishlist/add": {
+      "post": {
+        "summary": "Toggle product in wishlist (add or remove)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  },
+                  "productId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "userId",
+                  "productId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Wishlist updated"
+          }
+        }
+      }
+    },
+    "/api/wishlist": {
+      "get": {
+        "summary": "Get wishlist items",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Wishlist items returned"
+          }
+        }
+      }
+    },
+    "/api/wishlist/delete": {
+      "delete": {
+        "summary": "Remove product from wishlist",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product removed from wishlist"
+          }
+        }
+      }
+    },
+    "/api/wishlist/clear": {
+      "delete": {
+        "summary": "Clear wishlist",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Wishlist cleared"
+          }
+        }
+      }
+    }
+  }
+}
